@@ -19,56 +19,74 @@ for (let i=0; i<10; i++){
 }
 
 addBtn?.addEventListener("click", () => {
-    operand1 = displayValue;
-    displayValue = "";
+    checkForChainedExp();
+    operand1 = Number(displayValue);
+    clearDisplay();
     operator = "+";
 });
 
 subtractBtn?.addEventListener("click", () =>{
-    operand1 = displayValue;
-    displayValue = "";
+    checkForChainedExp();
+    operand1 = Number(displayValue);
+    clearDisplay();
     operator = "-";
 });
 
 multiplyBtn?.addEventListener("click", () =>{
-    operand1 = displayValue;
-    displayValue = "";
+    checkForChainedExp();
+    operand1 = Number(displayValue);
+    clearDisplay();
     operator = "*";
 });
 
 divideBtn?.addEventListener("click", () =>{
-    operand1 = displayValue;
-    displayValue = "";
+    checkForChainedExp();
+    operand1 = Number(displayValue);
+    clearDisplay();
     operator = "/";
 });
 
-equalBtn?.addEventListener("click", operate)
+equalBtn?.addEventListener("click", () =>{
+    display.textContent = operate();
+    clearDisplay();
+})
 
 clearBtn?.addEventListener("click", () =>{
     operand1 = undefined;
     operand2 = undefined;
     operator = undefined;
-    displayValue = "";
+    clearDisplay();
+    display.textContent = "--------------";
 })
 
 function add(num1, num2) {return num1 + num2;}
 function subtract(num1, num2) {return num1 - num2;}
 function multiply(num1, num2) {return num1 * num2;}
-function divide(num1, num2) {return num1 / num2;}
+function divide(num1, num2) {return Math.round( (num1 / num2) * 100000) / 100000;}
 
 function clearDisplay(){
-    
+    displayValue = ""
+}
+
+function checkForChainedExp(){
+    if (operand1){
+        displayValue = operate();
+        operand2 = undefined;
+        display.textContent = displayValue;
+    }
 }
 
 function operate(){
+    
     operand2 = Number(displayValue);
+    console.log(operand1,operator,operand2,displayValue)
     if (operator === "+")
-        display.textContent = add(operand1, operand2);
+        return add(operand1, operand2);
     if (operator === "-")
-        display.textContent = subtract(operand1, operand2);
+        return subtract(operand1, operand2);
     if (operator === "*")
-        display.textContent = multiply(operand1, operand2);
+        return multiply(operand1, operand2);
     if (operator === "/")
-        display.textContent = divide(operand1, operand2);
-    displayValue = "";
+        return divide(operand1, operand2);
+    
 }
