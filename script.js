@@ -3,6 +3,7 @@ const subtract = document.getElementById('subtract');
 const multiply = document.getElementById('multiply');
 const divide = document.getElementById('divide');
 const equal = document.getElementById('equals');
+const clear = document.getElementById('clear');
 
 let operand1, operand2, operator;
 
@@ -21,6 +22,12 @@ multiply?.addEventListener("click", () =>{
 divide?.addEventListener("click", () =>{
     operator = "/";
 });
+
+equal?.addEventListener("click", operate)
+
+clear?.addEventListener("click", () =>{
+
+})
 
 function add(num1, num2) {return num1 + num2;}
 function subtract(num1, num2) {return num1 - num2;}
